@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<role name="mont0371"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<role name="web"
+      inherit="true"
+      encrypted="true"
+      password="********">
+	<roles names="mont0371" role-type="member" />
+</role>
+
+<database name="InventoryII" encoding="UTF8" lc-collate="English_United States.1252" lc-ctype="English_United States.1252" is-template="false" allow-conns="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="country_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="640" y="320"/>
+	<column name="cntry_code" not-null="true">
+		<type name="character" length="3"/>
+	</column>
+	<column name="cntry_name" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="cntry_population">
+		<type name="bigint" length="0"/>
+	</column>
+	<constraint name="pk_cntry_code" type="pk-constr" table="public.country_t">
+		<columns names="cntry_code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="city_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="640" y="520"/>
+	<column name="city_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="city_name" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="cntry_code">
+		<type name="character" length="3"/>
+	</column>
+	<column name="city_population">
+		<type name="bigint" length="0"/>
+	</column>
+	<constraint name="pk_city_id" type="pk-constr" table="public.city_t">
+		<columns names="city_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="customer_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="500"/>
+	<column name="cust_id" not-null="true">
+		<type name="character" length="4"/>
+	</column>
+	<column name="cust_fname">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="cust_lname" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="cust_phone" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="cust_address" not-null="true">
+		<type name="character varying" length="20"/>
+	</column>
+	<column name="cust_city" not-null="true">
+		<type name="character varying" length="15"/>
+	</column>
+	<column name="cust_prov">
+		<type name="character" length="2"/>
+	</column>
+	<column name="cust_postcode" not-null="true">
+		<type name="character" length="6"/>
+	</column>
+	<column name="cust_country">
+		<type name="character" length="3"/>
+	</column>
+	<column name="cust_balance">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<constraint name="pk_customer" type="pk-constr" table="public.customer_t">
+		<columns names="cust_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="invoice_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="280"/>
+	<column name="invoice_number" not-null="true">
+		<type name="character" length="6"/>
+	</column>
+	<column name="cust_id" not-null="true">
+		<type name="character" length="4"/>
+	</column>
+	<column name="invoice_date" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="pk_invoice" type="pk-constr" table="public.invoice_t">
+		<columns names="invoice_number" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="product_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="640" y="60"/>
+	<column name="prod_code" not-null="true">
+		<type name="character" length="5"/>
+	</column>
+	<column name="cntry_origin">
+		<type name="character" length="3"/>
+	</column>
+	<column name="prod_description" not-null="true">
+		<type name="character varying" length="60"/>
+	</column>
+	<column name="prod_indate" not-null="true" default-value="now()">
+		<type name="date" length="0"/>
+	</column>
+	<column name="prod_qoh" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="prod_min">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="prod_price" not-null="true">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<column name="prod_discount">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_product" type="pk-constr" table="public.product_t">
+		<columns names="prod_code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="invoice_line_t">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="40"/>
+	<column name="invoice_number" not-null="true">
+		<type name="character" length="6"/>
+	</column>
+	<column name="invoice_line" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="prod_code" not-null="true">
+		<type name="character" length="5"/>
+	</column>
+	<column name="line_unit" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="line_price" not-null="true">
+		<type name="numeric" length="9" precision="2"/>
+	</column>
+	<constraint name="pk_invoice_line" type="pk-constr" table="public.invoice_line_t">
+		<columns names="invoice_number,invoice_line" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="Assignment 1" bold="true" font-size="9">
+	<position x="360" y="240"/>
+	<comment><![CDATA[Assignment 1
+Model: InventoryII
+Author: Marcelo Monteiro
+Database: CST8215_310_314
+Student: Marcelo Monteiro da Silva
+StudentID: 040989792
+e-mail: mont0371@algonquinlive.com]]></comment>
+</textbox>
+
+<constraint name="fk_cntry_code" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.country_t" table="public.city_t">
+	<columns names="cntry_code" ref-type="src-columns"/>
+	<columns names="cntry_code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_cntry_code" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.country_t" table="public.customer_t">
+	<columns names="cust_country" ref-type="src-columns"/>
+	<columns names="cntry_code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_cust_id" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.customer_t" table="public.invoice_t">
+	<columns names="cust_id" ref-type="src-columns"/>
+	<columns names="cust_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_cntry_code" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.country_t" table="public.product_t">
+	<columns names="cntry_origin" ref-type="src-columns"/>
+	<columns names="cntry_code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk1_invoice_line" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.invoice_t" table="public.invoice_line_t">
+	<columns names="invoice_number" ref-type="src-columns"/>
+	<columns names="invoice_number" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk2_invoice_line" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.product_t" table="public.invoice_line_t">
+	<columns names="prod_code" ref-type="src-columns"/>
+	<columns names="prod_code" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_city_t_country_t" type="relfk"
+	 custom-color="#83af1f"
+	 src-table="public.city_t"
+	 dst-table="public.country_t" reference-fk="fk_cntry_code"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_customer_t_country_t" type="relfk"
+	 custom-color="#5aa578"
+	 src-table="public.customer_t"
+	 dst-table="public.country_t" reference-fk="fk_cntry_code"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_invoice_t_customer_t" type="relfk"
+	 custom-color="#4b3e56"
+	 src-table="public.invoice_t"
+	 dst-table="public.customer_t" reference-fk="fk_cust_id"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="84.7615" y="-12.3442"/>
+	</label>
+</relationship>
+
+<relationship name="rel_product_t_country_t" type="relfk"
+	 custom-color="#9ac721"
+	 src-table="public.product_t"
+	 dst-table="public.country_t" reference-fk="fk_cntry_code"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="81.3947" y="20.2393"/>
+	</label>
+</relationship>
+
+<relationship name="rel_invoice_line_t_invoice_t" type="relfk"
+	 custom-color="#249b49"
+	 src-table="public.invoice_line_t"
+	 dst-table="public.invoice_t" reference-fk="fk1_invoice_line"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="70.1781" y="15.3055"/>
+	</label>
+</relationship>
+
+<relationship name="rel_invoice_line_t_product_t" type="relfk"
+	 custom-color="#942665"
+	 src-table="public.invoice_line_t"
+	 dst-table="public.product_t" reference-fk="fk2_invoice_line"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="4.66155" y="-66.7607"/>
+	</label>
+</relationship>
+
+</dbmodel>
