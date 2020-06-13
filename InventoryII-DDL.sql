@@ -1,8 +1,8 @@
-﻿-- FileName: Inventory-DDL.sql
+﻿-- FileName: InventoryII-DDL.sql
 -- Description: Modified script to create InventoryII database, create TABLEs
 -- Author: S Terai
 -- Year: 2018
--- Last Modified: 11 Jun 2020
+-- Last Modified: 13 Jun 2020
 -- Modified by: Marcelo Monteiro da Silva
 -----------------------------------------
 -- Database: CST8215_310_314
