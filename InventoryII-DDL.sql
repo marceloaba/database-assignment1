@@ -44,10 +44,10 @@ CREATE TABLE Customer_T (
   Cust_City       VARCHAR( 15 ) NOT NULL,
   Cust_Prov       CHAR( 2 ) NULL,
   Cust_PostCode   CHAR( 6 ) NOT NULL,
-  Cntry_code      CHAR( 3 ),
+  Cust_Country    CHAR( 3 ),
   Cust_Balance    DECIMAL( 9, 2 ), 
   CONSTRAINT PK_Customer PRIMARY KEY( Cust_Id ),
-  CONSTRAINT FK_Cntry_Code FOREIGN KEY( Cntry_Code ) REFERENCES Country_T( Cntry_Code ) --Add country table FK
+  CONSTRAINT FK_Cntry_Code FOREIGN KEY( Cust_Country ) REFERENCES Country_T( Cntry_Code ) --Add country table FK
 );
 
 CREATE TABLE Invoice_T (
@@ -60,7 +60,7 @@ CREATE TABLE Invoice_T (
 
 CREATE TABLE Product_T (
   Prod_Code        CHAR( 5 ),
-  Cntry_code      CHAR( 3 ),
+  Cntry_Origin     CHAR( 3 ),
   Prod_Description VARCHAR( 60 ) NOT NULL,
   Prod_Indate      DATE NOT NULL DEFAULT NOW(),
   Prod_QOH         INTEGER NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE Product_T (
   Prod_Price       DECIMAL( 5, 2 ) NOT NULL,
   Prod_Discount    INTEGER,
   CONSTRAINT PK_Product PRIMARY KEY( Prod_Code ),
-  CONSTRAINT FK_Cntry_Code FOREIGN KEY( Cntry_Code ) REFERENCES Country_T( Cntry_Code ) --Add country table FK
+  CONSTRAINT FK_Cntry_Code FOREIGN KEY( Cntry_Origin ) REFERENCES Country_T( Cntry_Code ) --Add country table FK
 
 );
 
