@@ -14,6 +14,7 @@
 -- add at least 6 customers, 
 -- use atleast 3 different cities
 
+--Droping Tables
 DELETE FROM Invoice_Line_T;
 DELETE FROM Product_T;
 DELETE FROM Invoice_T;
@@ -62,9 +63,11 @@ INSERT INTO Customer_T( Cust_Id, Cust_Fname, Cust_Lname, Cust_Phone, Cust_Addres
   VALUES( 'C005', 'Jackie', 'Chan', '555-555-5555', '555 Kwun Tong Rd', 'Hong Kong', 'HK', 'K55555', 'CHN', 500 );
 INSERT INTO Customer_T( Cust_Id, Cust_Fname, Cust_Lname, Cust_Phone, Cust_Address, Cust_City, Cust_Prov, Cust_PostCode, Cust_Country, Cust_Balance ) 
   VALUES( 'C006', 'Cayson', 'Mosley', '613-727-4723', '1385 Woodroffe Ave' , 'Ottawa', 'ON', 'K2G1V8', 'CAN', 600 );
+INSERT INTO Customer_T( Cust_Id, Cust_Fname, Cust_Lname, Cust_Phone, Cust_Address, Cust_City, Cust_Prov, Cust_PostCode, Cust_Country, Cust_Balance ) 
+  VALUES( 'C090', 'Raul', 'Vargas', '999-000-9090', '9090 Bermudas Avenue' , 'Chileno', 'CH', 'K90909', 'CHL', 600 );
 -- mandatory data for Customer table - Added by Marcelo Monteiro (13-06-2020)
 INSERT INTO Customer_T( Cust_ID, Cust_FName, Cust_LName, Cust_Phone, Cust_Address, Cust_City, Cust_Prov, Cust_PostCode, Cust_Country, Cust_Balance )
-  VALUES( 'C097', 'Aze', 'Balai', '7-731-707-7243', 'Ulitsa Aleutskaya','Vladivostok', 'VL','VL7SK4', 'RUS', 0 );
+  VALUES( 'C097', 'Aze', 'Balai', '7-731-707-7243', 'Ulitsa Aleutskaya','Valdivostok', 'VL','VL7SK4', 'RUS', 0 );
 
 -- Add Invocie data
 INSERT INTO Invoice_T( Invoice_Number, Cust_Id, Invoice_Date )
@@ -102,10 +105,12 @@ INSERT INTO Product_T( Prod_Code, Cntry_Origin, Prod_Description, Prod_Indate, P
   VALUES( 'P2016', 'CAN', 'Apple iPad 2 with Wi-Fi + 3G', '2011-02-23', 90, 200, 849.00, 0 );
 INSERT INTO Product_T( Prod_Code, Cntry_Origin, Prod_Description, Prod_Indate, Prod_QOH, Prod_Min, Prod_Price, Prod_Discount ) 
   VALUES( 'P2017', 'CAN', 'iPAD 2 Smart Cover', '2011-02-14', 70, 10, 45.00, 10 );
+-- Add product from Chile - Added by Marcelo Monteiro (16-06-2020)
+INSERT INTO Product_T( Prod_Code, Cntry_Origin, Prod_Description, Prod_Indate, Prod_QOH, Prod_Min, Prod_Price, Prod_Discount ) 
+  VALUES( 'P2021', 'CHL', 'Logitech Mx Keys', '2011-02-18', 50, 10, 159.99, 0 );
 -- mandatory data for Product table - Added by Marcelo Monteiro (13-06-2020)
 INSERT INTO Product_T( Prod_Code, Prod_Description, Prod_InDate, Prod_QOH, Prod_Min, Cntry_Origin, Prod_Price, Prod_Discount )
   VALUES( 'P2119', 'Organic Chard', '2018-01-14', 240, 100, 'RUS', 15.00, 5 );
--- mandatory data for Product table - Added by Marcelo Monteiro (13-06-2020)
 INSERT INTO Product_T( Prod_Code, Prod_Description, Prod_InDate, Prod_QOH, Prod_Min, Cntry_Origin, Prod_Price, Prod_Discount )
   VALUES( 'P2020', 'Organic Collard Green', '2018-01-14', 140, 110, 'RUS', 11.00, 5 );
 
