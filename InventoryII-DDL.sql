@@ -10,6 +10,9 @@
 -- Computer Programmer Spring 2020
 -- Student: Marcelo Monteiro da Silva
 
+--Droping VIEWs - Added by Marcelo Monteiro (16-06-2020)
+DROP VIEW IF EXISTS ProductCanada_V;
+DROP VIEW IF EXISTS CustomerCanada_V;
 
 DROP TABLE IF EXISTS Invoice_Line_T;
 DROP TABLE IF EXISTS Product_T;
@@ -83,4 +86,12 @@ CREATE TABLE Invoice_Line_T (
   CONSTRAINT FK2_Invoice_Line FOREIGN KEY( Prod_Code ) REFERENCES Product_T( Prod_Code )
 );
 
+--Creating the VIEWS - Added by Marcelo Monteiro (16-06-2020)
+CREATE VIEW ProductCanada_V AS
+  SELECT * FROM Product_T
+  WHERE cntry_origin = 'CAN';
+CREATE VIEW CustomerCanada_V AS
+  SELECT * FROM Customer_T
+  WHERE cust_country = 'CAN';
+  
 -- eof: InventoryII-DDL.sql
