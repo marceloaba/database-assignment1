@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.1" last-position="0,22" last-zoom="1"
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="1"
 	 default-schema="public" default-owner="postgres">
 <role name="mont0371"
       inherit="true"
@@ -30,7 +30,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="country_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="20" y="500"/>
+	<position x="40" y="500"/>
 	<column name="cntry_code" not-null="true">
 		<type name="character" length="3"/>
 	</column>
@@ -48,7 +48,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="city_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="40" y="760"/>
+	<position x="60" y="760"/>
 	<column name="city_id" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -69,7 +69,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="customer_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="20" y="180"/>
+	<position x="40" y="180"/>
 	<column name="cust_id" not-null="true">
 		<type name="character" length="4"/>
 	</column>
@@ -108,7 +108,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="invoice_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="480" y="220"/>
+	<position x="500" y="220"/>
 	<column name="invoice_number" not-null="true">
 		<type name="character" length="6"/>
 	</column>
@@ -126,7 +126,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="product_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="480" y="700"/>
+	<position x="500" y="700"/>
 	<column name="prod_code" not-null="true">
 		<type name="character" length="5"/>
 	</column>
@@ -159,7 +159,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="invoice_line_t">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="480" y="440"/>
+	<position x="500" y="440"/>
 	<column name="invoice_number" not-null="true">
 		<type name="character" length="6"/>
 	</column>
@@ -183,7 +183,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <view name="countries_v">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="600" y="80"/>
+	<position x="620" y="80"/>
 	<reference>
 		<expression><![CDATA[ SELECT city_t.city_name,
     country_t.cntry_name AS country,
@@ -198,7 +198,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <view name="countries_prod_v">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="600" y="140"/>
+	<position x="620" y="140"/>
 	<reference>
 		<expression><![CDATA[ SELECT country_t.cntry_name AS country,
     count(product_t.cntry_origin) AS product_per_country
@@ -260,13 +260,21 @@ E-mail: mend0152@algonquinlive.com]]></comment>
 	 custom-color="#83af1f"
 	 src-table="public.city_t"
 	 dst-table="public.country_t" reference-fk="fk_cntry_code"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="9.03253" y="-26.6857"/>
+	</label>
+</relationship>
 
 <relationship name="rel_customer_t_country_t" type="relfk"
 	 custom-color="#5aa578"
 	 src-table="public.customer_t"
 	 dst-table="public.country_t" reference-fk="fk_cntry_code"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="11.8562" y="-22.6857"/>
+	</label>
+</relationship>
 
 <relationship name="rel_invoice_t_customer_t" type="relfk"
 	 custom-color="#4b3e56"
@@ -278,18 +286,30 @@ E-mail: mend0152@algonquinlive.com]]></comment>
 	 custom-color="#9ac721"
 	 src-table="public.product_t"
 	 dst-table="public.country_t" reference-fk="fk_cntry_code"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="23.8772" y="-19.1857"/>
+	</label>
+</relationship>
 
 <relationship name="rel_invoice_line_t_invoice_t" type="relfk"
 	 custom-color="#249b49"
 	 src-table="public.invoice_line_t"
 	 dst-table="public.invoice_t" reference-fk="fk1_invoice_line"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="2.73655" y="-33.6857"/>
+	</label>
+</relationship>
 
 <relationship name="rel_invoice_line_t_product_t" type="relfk"
 	 custom-color="#942665"
 	 src-table="public.invoice_line_t"
 	 dst-table="public.product_t" reference-fk="fk2_invoice_line"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0.300412" y="-24.6857"/>
+	</label>
+</relationship>
 
 </dbmodel>
