@@ -15,12 +15,30 @@ WHERE Customer_T IS NULL
 ORDER BY Country_Name;
 
 --2. Write an SQL statement to list countries from which no products are bought
-SELECT Country_T.cntry_name AS Country_Name, Product_T.prod_description
-FROM Country_T
-LEFT JOIN Product_T
-ON Country_T.cntry_code = Product_T.cntry_origin
-WHERE Product_T IS NULL
-ORDER BY Country_Name;
+SELECT CT.cntry_name AS Country, CT.cntry_code,PT.Prod_code AS PT_Prod_Code, PT.cntry_origin, PT.Prod_Description, ILT.Prod_code AS ILT_Prod_Code, ILT.Invoice_number  
+FROM Country_T AS CT
+LEFT JOIN Product_T AS PT
+ON CT.cntry_code = PT.Cntry_Origin
+LEFT JOIN Invoice_line_T AS ILT
+ON PT.prod_code = ILT.prod_code
+WHERE ILT.prod_code IS NULL;
+
+
+SELECT * FROM Country_T;
+
+SELECT * FROM City_T;
+
+SELECT * FROM Customer_T;
+
+SELECT * FROM Product_T;
+
+SELECT * FROM Invoice_T;
+
+SELECT * FROM Invoice_Line_T;
+
+SELECT * FROM Countries_V;
+
+SELECT * FROM Countries_prod_V;
 
 
 -- eof: SELECT-DML.sql
